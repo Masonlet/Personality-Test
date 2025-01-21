@@ -1,13 +1,26 @@
-﻿* {
-    margin: 0;
-    padding: 0;
-    color: LawnGreen;
+﻿:root {
+    --background-primary: #8cc9c9;
+    --background-secondary: #919191;
+    --colour-gradient: -145deg, var(--background-secondary), var(--background-primary), var(--background-secondary), var(--background-primary);
+    --colour-primary: #000000;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    color: var(--colour-primary);
+}
+
+@keyframes gradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 0%; }
+}
 body {
-    background-color: black;
     width: 100vw;
     height: 100vh;
+    background: linear-gradient(var(--colour-gradient));
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
 }
 
 h1 {
@@ -26,7 +39,7 @@ main {
 
 #one, #two, #three {
     width: 32%;
-    border: 2px solid DarkGrey;
+    border: 2px solid var(--colour-primary);
     border-radius: 48px;
 }
 
@@ -36,7 +49,7 @@ button {
 }
 
 #beginButton {
-    background-color: black;
+    background-color: white;
     opacity: 50%;
     font-size: 80px;
     padding: 10px;
@@ -46,7 +59,7 @@ button {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     width: 50%;
-    border: 2px solid LawnGreen;
+    border: 2px solid var(--colour-primary);
     border-radius: 12px;
 }
     #beginButton:hover, #prevButton:hover, #nextButton:hover {
@@ -63,11 +76,11 @@ footer {
 }
 
 #prevButton, #nextButton {
-    background-color: black;
+    background-color: white;
     opacity: 50%;
     font-size: 5vh;
     padding: 10px;
-    border: 2px solid LawnGreen;
+    border: 2px solid var(--colour-primary);
     border-radius: 12px;
     height: 8vh;
     visibility: hidden;

@@ -81,9 +81,48 @@ function editScore(category, value) {
 
 // Start Function
 function start(){
-    $("#beginButton").hide();
-    $("#nextButton").css("visibility", "visible");
-    questions.forEach((question) => {
-
-    });
+    document.getElementById("beginButton").style.visibility = "hidden";
+    document.getElementById("nextButton").style.visibility = "visible";
+    sessionStorage.setItem("index", 0);
 }
+
+function update() {
+   
+}
+
+function nextQuestion() {
+    let index = sessionStorage.getItem("index");
+    
+    if(index >= 0){
+        document.getElementById("prevButton").style.visibility = "visible";
+    }
+
+    index++;
+    sessionStorage.setItem("index", index);
+    update();
+
+    if(index === questions.size - 2) { 
+        document.getElementById("nextButton").style.visibility = "hidden";
+        return;
+    }
+}
+
+function prevQuestion() {
+    let index = sessionStorage.getItem("index");
+
+    index--;
+    sessionStorage.setItem("index", index);
+    update();
+
+    if(index <= 0) {
+        document.getElementById("prevButton").style.visibility = "hidden";
+        return;
+    }
+    else if (document.getElementById("nextButton").style.visibility === "hidden") {
+        document.getElementById("nextButton").style.visibility = "visible";
+    }
+}
+
+document.getElementById("beginButton").addEventListener("click", () => start());
+document.getElementById("prevButton").addEventListener("click", () => prevQuestion());
+document.getElementById("nextButton").addEventListener("click", () => nextQuestion());
